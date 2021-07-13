@@ -166,9 +166,9 @@ function getWeatherData () {
         let {latitude, longitude } = success.coords;
         
     
-       a = '15.5757'
+       a = '16.0678'
     
-        b = '108.4743'
+        b = '108.2208'
 
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${a}&lon=${b}&exclude=hourly,minutely&units=metric&lang=vi&appid=${APP_ID}`).then(res => res.json()).then(data => {
 
@@ -181,9 +181,9 @@ function getWeatherData () {
 function showWeatherData (data){
 
     let {humidity, wind_deg, sunrise, sunset, wind_speed, uvi, wind_gust, clouds, visibility} = data.current;
-
+    
     timezone.innerHTML = data.timezone;
-        countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
+    countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
 
 
     currentWeatherItemsEl.innerHTML = 
@@ -232,12 +232,16 @@ function showWeatherData (data){
             `
         }else{
             otherDayForcast += `
-            <div class="weather-forecast-item">
+           
+            <div class="weather-forecast-item slide">
+    
+            
                 <div class="day">${window.moment(day.dt*1000).locale("vi").format('ddd')}</div>
                 <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
                 <div class="temp">  ${day.weather[0].description}</div>
                 <div class="temp">Đêm : ${day.temp.night}&#176;C</div>
                 <div class="temp">Ngày : ${day.temp.day}&#176;C</div>
+           
             </div>   
              `
         }

@@ -1,12 +1,12 @@
 // navigaton bar
 var headers = document.getElementById('header');
-console.log(headers)
-var mobileBar = document.querySelector('.mobile-bar');
-console.log(mobileBar)
-var overView = document.getElementById('overview');
-console.log(overView)
-var flexMenu = document.querySelector('.flex4-menu');
 
+var mobileBar = document.querySelector('.mobile-bar');
+
+var overView = document.getElementById('overview');
+
+var flexMenu = document.querySelector('.flex4-menu');
+var container = document.querySelector('.container4');
 mobileBar.onclick = function(){
     var isClose = headers.clientHeight === 60;
     if (isClose){
@@ -18,6 +18,9 @@ mobileBar.onclick = function(){
     }
 }
 overView.onclick = function(){
+    headers.style.height = '60px';
+}
+container.onclick = function(){
     headers.style.height = '60px';
 }
 //map weather
@@ -44,6 +47,8 @@ function showSlides(n) {
    slides[slideIndex-1].style.display = "block";
    dots[slideIndex-1].className += " active";
  }
+// weather news
+
 
  // api
 //  fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions", {

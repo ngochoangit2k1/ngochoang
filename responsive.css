@@ -16,6 +16,7 @@
         background-color:rgba(3, 52, 94, 0.445);
         overflow: hidden;
         transition: 0.5s;
+        /* padding: 0 20px; */
     }
     #header  .flex4-menu {
         margin-left: 15px;
@@ -25,9 +26,13 @@
         display:block;
         z-index: 1;
     }
+    .flex4-logo{
+        padding-left: 10px;
+    }
     .flex4{
         display:flex;
         align-items: flex-start;
+        padding-top: 12px;
     }
      
     .flex4-menu .a::after{
@@ -46,12 +51,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-      
+        margin-right: 15px;
+        
       } 
     .mobile-bar:hover{
         cursor: pointer;
        background: #ccc;
        border-radius: 50%;
+       
        
     }
     .mobile-bar .fa-bars{
@@ -61,7 +68,7 @@
         display:none;
     }
     .container {
-        padding: 20px 0;
+        padding: 25px 0;
         height:auto;
         display:flex;
         align-items:center;
@@ -70,7 +77,7 @@
         overflow: hidden;
     }
     .container2{
-        margin: 10%;
+        margin-top:7%;
         width: 90%;
         position: relative;
         height: 90vh;
@@ -81,6 +88,9 @@
         transform: translateY(-50%);
         margin-left: 5%;
       
+    }
+    .search-bar{
+        width: 60%;
     }
     #dong_ho .time{
         margin-top: 5%;
@@ -100,6 +110,7 @@
     align-items:center;
     justify-content:center;
     flex-direction:column;
+    margin: 10px 0;
 }
 .container5{
     height:auto;
@@ -111,7 +122,35 @@
 }
 .future-forecast{
     margin: 0 auto;
-}}
+}
+/* animation: */
+#future-forecast {
+    overflow: hidden;
+    height: 510px;
+    width: 728px;
+    margin: 0 auto;
+  }
+  
+  .weather-forecast {
+    width: 2912px;
+    -webkit-animation: slide 8s ease infinite;
+  }
+  
+  .slide {
+    float: left;
+    height: 200px;
+    width: 150px;
+  }
+  
+  
+  @-webkit-keyframes slide {
+    20% {margin-left: 1000px;}
+    30% {margin-left: -128px;}
+    50% {margin-left: -328px;}
+    60% {margin-left: -456px;}
+    80% {margin-left: -1080px;}
+  }
+}
     /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-width : 760px) and (max-width : 1024px) {
     .container-fluid{
@@ -123,7 +162,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 95%;
+        width: 90%;
         height: 60px;
         border-radius: 10px;
         background-color:rgba(240, 248, 255, 0.466);
@@ -131,7 +170,7 @@
         display: flex;
         justify-content: center;
         transition: 0.5s;
-       
+        padding: 0 20px;
     }
     #header  .flex4-menu    {
         margin-left: 20px   ;
@@ -144,6 +183,7 @@
         width: 100%;
         display:flex;
         align-items: flex-start;
+        padding-top: 10px;
     }
         /* .flex4-menu {
             width: 100%;
@@ -156,6 +196,7 @@
       
       }
     
+    
     .mobile-bar  {
         border: solid 1px rgb(255, 255, 255);
         border-radius: 50%;
@@ -166,6 +207,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+       
       
       } 
     .mobile-bar:hover{
@@ -191,7 +233,6 @@
     }
     .container2{
         margin-top: 8%;
-        margin-bottom: 5%;
         width: 60%;
         position: relative;
     }
@@ -240,5 +281,33 @@
     .future-forecast{
         margin: 0 auto;
     }
+    /* animation */
+    #future-forecast {
+        overflow: hidden;
+        height: 510px;
+        width: 728px;
+        margin: 0 auto;
+      }
+      
+      .weather-forecast {
+        width: 2912px;
+        -webkit-animation: slide 10s ease infinite;
+      }
+      
+      .slide {
+        float: left;
+        height: 200px;
+        width: 150px;
+      }
+      
+      
+      @-webkit-keyframes slide {
+        20% {margin-left: 900px;}
+        30% {margin-left: -128px;}
+        50% {margin-left: -328px;}
+        60% {margin-left: -456px;}
+        80% {margin-left: -900px;}
+      }
+      
     }
     
