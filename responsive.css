@@ -13,11 +13,12 @@
         right: 0;
         width: 100%;
         height: 60px;
-        background-color:rgba(240, 248, 255, 0.466);
+        background-color:rgba(3, 52, 94, 0.445);
         overflow: hidden;
         transition: 0.5s;
     }
     #header  .flex4-menu {
+        margin-left: 15px;
         transition: 0.5s;
         opacity: 0;
        
@@ -28,10 +29,7 @@
         display:flex;
         align-items: flex-start;
     }
-        /* .flex4-menu {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.233);
-        } */
+     
     .flex4-menu .a::after{
         content:"";
         border-right: none !important;
@@ -94,7 +92,26 @@
     }
     #ngay_thang span.bot{
         font-size: 1.2rem!important;
-    }}
+    }
+ /* weatherinfo */
+ .container4{
+    height:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+.container5{
+    height:auto;
+}
+.current-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.future-forecast{
+    margin: 0 auto;
+}}
     /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-width : 760px) and (max-width : 1024px) {
     .container-fluid{
@@ -106,7 +123,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 80%;
+        width: 95%;
         height: 60px;
         border-radius: 10px;
         background-color:rgba(240, 248, 255, 0.466);
@@ -117,6 +134,7 @@
        
     }
     #header  .flex4-menu    {
+        margin-left: 20px   ;
         transition: 0.5s;
         opacity: 0;
         display:block;
@@ -203,5 +221,24 @@
         height: 20vh;
         padding: 80px 30px;
     }
-    
+    /* weatherinfo */
+    .container4{
+        height:auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
     }
+    .container5{
+        height:auto;
+    }
+    .current-info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .future-forecast{
+        margin: 0 auto;
+    }
+    }
+    

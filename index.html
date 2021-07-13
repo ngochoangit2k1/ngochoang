@@ -23,7 +23,7 @@
               alt=""
               class="flex4-logo"
             />
-            <ul id="flex-menu" class="flex4-menu">
+            <ul class="flex4-menu">
                 <li class="a">
                     <a  href="#weather">Home</a>
                   </li>
@@ -47,8 +47,7 @@
             </div>
           </div>
       </div>
-    
-          
+             
       <div id="overview"  class="container">
         
     
@@ -90,6 +89,14 @@
                         <div class="label">Tốc Độ Gió</div>
                         <div class="value"><span class="wind-speed">--</span> km/h</div>
                     </div>
+                   
+                    
+                </div>
+                <div class="lon">
+                        
+                </div>
+                <div class="lat">
+                    
                 </div>
             </div>
       
@@ -144,16 +151,84 @@
                 <!-- Nút điều khiển mũi tên-->
                  <a class="prev" onclick="plusSlides(-1)">❮</a>
                  <a class="next" onclick="plusSlides(1)">❯</a>
+                 <div id="dot" style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                  <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
                </div>
                <br>
               <!-- Nút tròn điều khiển slideshow-->
-               <div style="text-align:center">
+               <!-- <div id="dot" style="text-align:center">
                  <span class="dot" onclick="currentSlide(1)"></span>
                  <span class="dot" onclick="currentSlide(2)"></span>
                  <span class="dot" onclick="currentSlide(3)"></span>
-               </div>
+               </div> -->
         </div>
-         </div>
+      </div>
+      
+      <!-- <iframe width="100%" height="500px" src="https://www.windy.com/vi/-Ca%CC%89nh-ba%CC%81o-th%C6%A1%CC%80i-ti%C3%AA%CC%81t-capAlerts?capAlerts,-14.954,122.168,3" frameBorder="0"></iframe> -->
+      <div class="container4">
+        
+        <div class="container5">
+            <div class="current-info">
+                
+                <div class="today" id="current-temp">
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="other">
+                       
+                    </div>
+                </div>
+
+                <div class="date-container">
+                    <div class="others" id="current-weather-items">
+                    </div>
+
+                </div>
+
+                <div class="date-container1">
+                    <div class="time-zone" id="time-zone">--</div>
+                    <div id="country" class="country">--</div>
+                   
+                </div>    
+                
+            </div>
+
+            
+        </div>
+        
+        <div class="future-forecast">
+    
+            <div class="weather-forecast" id="weather-forecast">
+                <div class="weather-forecast-item">
+                   
+                </div>
+                <div class="weather-forecast-item">
+                   
+                </div>
+                <div class="weather-forecast-item">
+                    
+                </div>
+                <div class="weather-forecast-item">
+
+                </div>
+                <div class="weather-forecast-item">
+                   
+                </div>
+    
+            </div>
+        </div>
+      
+    </div>
+   
+      <div class="footer">
+        <div class="sm">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+      </div>
     </div>
   
     <script src="style.js"></script>

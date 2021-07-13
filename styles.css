@@ -11,12 +11,16 @@
 
 .container-fluid{
     width: 100%;
-    height: 100vh; 
+    height:auto; 
     overflow: hidden;  
     margin: 0 auto;   
     background: #FFA17F;
     background: var(--br-1);
     background: var(--br-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
 }
 :root{
     --border-span: 5%;
@@ -51,7 +55,7 @@ a {
   .flex4 {
     display: flex;
     align-items: center;
-    padding: 14px;
+    padding: 5px 0 14px 0;
   }
   .flex4-logo {
     display: block;
@@ -337,7 +341,7 @@ a {
     text-transform: uppercase;
 }
 #dong_ho #thoi_gian div:last-child span {
-    background: #ff006a;
+    background: #ff0082cc;
 }
 #dong_ho #thoi_gian div:last-child span:nth-child(2) {
     background: #ec0062;
@@ -391,6 +395,7 @@ a {
    border-radius: 10px ;
     width: 100%;
     height: 600px;
+    transition: transform 3s linear;
 }
 .slideshow-container {
     max-width: 1000px;
@@ -464,13 +469,13 @@ a {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: rgb(175, 32, 32);
+    background-color: rgb(243, 242, 242);
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    transition:  1.5s ease;
   }
  .active, .dot:hover {
-    background-color: #717171;
+    background-color: #d40606;
   }
  /* tạo hiệu ứng chuyển động fade */
   .fade {
@@ -478,6 +483,7 @@ a {
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
+    transition:  0.6s ease;
   }
 
  @-webkit-keyframes fade {
@@ -488,3 +494,227 @@ a {
     from {opacity: .4}
     to {opacity: 1}
   }
+/* footer */
+.footer {
+    margin-top:30px;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.212);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sm{
+    margin: 20px 0;
+  }
+  .sm a{
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: #2c3e50;
+    font-size: 18px;
+    transition: 0.4s;
+    border-radius: 50%
+  }
+  .sm a:hover{
+    background: #2c3e50;
+    color: white;
+  }
+/* map */
+.container4{   
+    color:#fff;
+    width: 80%;
+    height: 520px;
+    background: rgba(39, 38, 38, 0.212);    float: left;
+    overflow: hidden;
+
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.container5{
+    color:#fff;
+    width: 100%;
+    height: 260px;
+    /* background-color: rgb(199, 153, 153);  */
+    border-radius: 5px;
+}
+
+.current-info{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.others{
+    padding: 12px;
+   
+    flex-direction: column;
+   
+}
+
+/* .others{  
+    background: rgba(24,24,27, 0.6);
+    padding:20px;
+    border-radius: 10px;
+    margin: 10px 0;
+   
+} */
+
+.others .weather-item{
+    font-size: 15px;
+    flex-direction: column;
+
+}
+.date-container1{
+    width: 310px;
+    margin-top: 20px;
+    display: flex;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-right: 45px;
+    background: rgba(0,0,0,0.2);
+    flex-direction: column;
+}
+.date-container1:hover{
+    background: rgba(26, 25, 25, 0.425);
+    transition: 0.8s;
+    transform: scale(1.03);
+}
+
+.date-container{
+    margin-top: 20px;
+    display: flex;
+    float: left;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-left: 35px;
+    margin-right: 25px;
+    width: 300px;
+    background: rgba(0,0,0,0.2)
+    
+}
+
+/* .date-container1{
+    margin-top: 20px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    margin-right: 45px;
+    
+} */
+.date-container:hover{
+    background: rgba(26, 25, 25, 0.425);
+    transition: 0.8s;
+    transform: scale(1.03);
+}
+
+.time-zone{
+    font-size: 30px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.country{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+  .future-forecast{
+    /* background: rgba(24,24,27,0.8); */
+    padding: 25px;
+    margin: auto;
+    bottom: 0;
+    display: flex;
+    color:white;
+    width: 95.8%;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    margin-bottom: 100px;
+    border-radius: 5px;
+    
+}
+
+.today{
+    margin-top: 20px;
+    margin-left: 45px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding:10px;
+    padding-right:20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2)
+}
+
+
+.today:hover{
+    background: rgba(26, 25, 25, 0.425);
+    transition: 0.8s;
+    transform: scale(1.03);
+}
+
+.today .day{
+    padding: 5px 15px;
+    background: #3c3c44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+ .today .temp{
+    font-size: 18px;
+    padding-top: 15px;
+    text-transform: capitalize;
+   
+}
+
+.future-forecast .weather-forecast{
+    display: flex;
+}
+
+.weather-forecast .weather-forecast-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    margin: 0 15px;
+}
+ 
+.weather-forecast-item:hover{
+    background: rgba(26, 25, 25, 0.425);
+    transition: 0.4s;
+    transform: scale(1.03);
+}
+
+.weather-forecast .weather-forecast-item .day{
+    padding: 5px 15px;
+    background: #3C3C44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.weather-forecast .weather-forecast-item .temp{
+    font-weight: 100;
+    font-size: 12px;
+    text-transform: capitalize;
+
+}
+

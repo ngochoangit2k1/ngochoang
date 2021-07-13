@@ -9,32 +9,42 @@ const sunrise = document.querySelector('.sunrise');
 const sunset = document.querySelector('.sunset');
 const humidity = document.querySelector('.humidity');
 const windSpeed = document.querySelector('.wind-speed');
+const clouds = document.querySelector('.clouds');
+const windDeg = document.querySelector('.wind-deg');
+const anc = document.querySelector('.lon');
+const lat = document.querySelector('.lat');
 
 //Thành phố mặc định
     
 var n = "Da nang"
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=${n}&appid=${APP_ID}&units=metric&lang=vi`)
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${n}&appid=${APP_ID}&exclude=hourly,minutely&units=metric&lang=vi`)
         .then(async res => {
             const data = await res.json();
                 console.log('[Search Input]', data);
                 cityName.innerHTML = data.name || DEFAULT_VALUE;
                 weatherState.innerHTML = data.weather[0].description || DEFAULT_VALUE;
                 weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+                console.log(weatherIcon)
                 temperature.innerHTML = Math.round(data.main.temp) || DEFAULT_VALUE;    
                 sunrise.innerHTML = moment.unix(data.sys.sunrise).format('H:mm') || DEFAULT_VALUE;
                 sunset.innerHTML = moment.unix(data.sys.sunset).format('H:mm') || DEFAULT_VALUE;
                 humidity.innerHTML = data.main.humidity || DEFAULT_VALUE;
                 windSpeed.innerHTML = (data.wind.speed * 3.6).toFixed(2) || DEFAULT_VALUE;
-});
+                windDeg.innerHTML = data.wind.deg  || DEFAULT_VALUE;
+                clouds.innerHTML = data.clouds.all || DEFAULT_VALUE;
+                anc.innerHTML = data.coord.lon || DEFAULT_VALUE;
+                anc.innerHTML = data.coord.lat || DEFAULT_VALUE;
+
+}); 
 
 // Thành phố cần tìm kiếm
 
 searchInput.addEventListener('change', (e) => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${e.target.value}&appid=${APP_ID}&units=metric&lang=vi`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${e.target.value}&appid=${APP_ID}&exclude=hourly,minutely&units=metric&lang=vi`)
         .then(async res => {
             const data = await res.json();
-            console.log('[Search Input]', data);
-            
+            console.log('[Search Input]', data);  
+       
             cityName.innerHTML = data.name || DEFAULT_VALUE;
             weatherState.innerHTML = data.weather[0].description || DEFAULT_VALUE;
             weatherIcon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
@@ -44,9 +54,16 @@ searchInput.addEventListener('change', (e) => {
             sunset.innerHTML = moment.unix(data.sys.sunset).format('H:mm') || DEFAULT_VALUE;
             humidity.innerHTML = data.main.humidity || DEFAULT_VALUE;
             windSpeed.innerHTML = (data.wind.speed * 3.6).toFixed(2) || DEFAULT_VALUE;
+            windDeg.innerHTML = data.wind.deg  || DEFAULT_VALUE;
+            clouds.innerHTML = data.clouds.all || DEFAULT_VALUE;
+            anc.innerHTML = data.coord.lon || DEFAULT_VALUE;
+           
+            anc.innerHTML = data.coord.lat || DEFAULT_VALUE;
         });
 });
-
+console.log(anc)
+console.log(lat)
+console.log(cityName)
 // Đồng hồ
 
 function Dong_ho() {
@@ -60,6 +77,7 @@ function Dong_ho() {
     phut.innerHTML = Phut_hien_tai;
     giay.innerHTML = Giay_hien_tai;
 }
+
 var Dem_gio = setInterval(Dong_ho, 1000);
 
 // Ngày tháng năm
@@ -77,31 +95,7 @@ function Ngay_Thang() {
 }
 var Dem_Ngay = setInterval(Ngay_Thang, 000);
 
-// Slide bản đồ thời tiết
 
-var slideIndex = 1;
- showSlides(slideIndex);
-function plusSlides(n) {
-   showSlides(slideIndex += n);
- }
-function currentSlide(n) {
-   showSlides(slideIndex = n);
- }
-function showSlides(n) {
-   var i;
-   var slides = document.getElementsByClassName("mySlides");
-   var dots = document.getElementsByClassName("dot");
-   if (n > slides.length) {slideIndex = 1}
-   if (n < 1) {slideIndex = slides.length}
-   for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";
-   }
-   for (i = 0; i < dots.length; i++) {
-       dots[i].className = dots[i].className.replace(" active", "");
-   }
-   slides[slideIndex-1].style.display = "block";
-   dots[slideIndex-1].className += " active";
- }
 
  //Tìm kiếm bằng giọng nói
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
@@ -110,55 +104,32 @@ const recognition = new SpeechRecognition();
 const synth = window.speechSynthesis;
 recognition.lang = 'vi-VI';
 recognition.continuous = false;
-
 const microphone = document.querySelector('.microphone');
 
 const speak = (text) => {
     if (synth.speaking) {
-        console.error('Busy. Speaking...');
         return;
     }
-
     const utter = new SpeechSynthesisUtterance(text);
-
-    utter.onend = () => {
-        console.log('SpeechSynthesisUtterance.onend');
-    }
-    utter.onerror = (err) => {
-        console.error('SpeechSynthesisUtterance.onerror', err);
-    }
-
     synth.speak(utter);
 };
 
 const handleVoice = (text) => {
     console.log('text', text);
-
     // "thời tiết tại Đà Nẵng" => ["thời tiết tại", "Đà Nẵng"]
     const handledText = text.toLowerCase();
     if (handledText.includes('tại')) {
         const location = handledText.split('tại')[1].trim();
-
-        console.log('location', location);
         searchInput.value = location;
         const changeEvent = new Event('change');
         searchInput.dispatchEvent(changeEvent);
         return;
     }
-    
-    const container = document.querySelector('.container');
-    if (handledText.includes('mấy giờ')) {
-        const textToSpeech = `${moment().hours()} hours ${moment().minutes()} minutes`;
-        speak(textToSpeech);
-        return;
-    }
-
-    speak('Try again bitch');
+    speak('Vui lòng đọc lại');
 }
 
 microphone.addEventListener('click', (e) => {
     e.preventDefault();
-
     recognition.start();
     microphone.classList.add('recording');
 });
@@ -178,3 +149,100 @@ recognition.onresult = (e) => {
     const text = e.results[0][0].transcript;
     handleVoice(text);
 }
+
+///////
+
+const currentWeatherItemsEl = document.getElementById('current-weather-items');
+const weatherForecastEl = document.getElementById('weather-forecast');
+const currentTempEl = document.getElementById('current-temp');
+const timezone = document.getElementById('time-zone');
+const countryEl = document.getElementById('country');
+
+
+getWeatherData()
+function getWeatherData () {
+    navigator.geolocation.getCurrentPosition((success) => {
+        
+        let {latitude, longitude } = success.coords;
+        
+    
+       a = '15.5757'
+    
+        b = '108.4743'
+
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${a}&lon=${b}&exclude=hourly,minutely&units=metric&lang=vi&appid=${APP_ID}`).then(res => res.json()).then(data => {
+
+        console.log(data)
+        showWeatherData(data);
+        })
+
+    })
+}
+function showWeatherData (data){
+
+    let {humidity, wind_deg, sunrise, sunset, wind_speed, uvi, wind_gust, clouds, visibility} = data.current;
+
+    timezone.innerHTML = data.timezone;
+        countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
+
+
+    currentWeatherItemsEl.innerHTML = 
+    `
+    <div class="weather-item">
+        <div>Mây: ${clouds}%</div>
+    </div>
+    <div class="weather-item">   
+        <div>Độ Ẩm: ${humidity}%</div>
+    </div>
+    <div class="weather-item">
+        <div>Chỉ Số UV: ${uvi}</div>
+    </div>
+    <div class="weather-item">   
+        <div>Tầm Nhìn TB: ${visibility}m</div>
+    </div>
+    <div class="weather-item">
+        <div>Hướng Gió: ${wind_deg} độ</div>
+    </div>
+    <div class="weather-item">
+        <div>Tốc Độ Gió: ${wind_speed}km/h</div>
+    </div>
+    <div class="weather-item">
+        <div>Gió Giật: ${wind_gust}km/h</div>
+    </div>
+    
+    <div class="weather-item">
+        <div>Mặt Trời Mọc: ${window.moment(sunrise * 1000).format('HH:mm a')}</div>
+    </div>
+    <div class="weather-item">
+        <div>Mặt Trời Lặng: ${window.moment(sunset*1000).format('HH:mm a')}</div>
+    </div>  
+    `;
+
+    let otherDayForcast = ''
+    data.daily.forEach((day, idx) => {
+        if(idx == 0){
+            currentTempEl.innerHTML = `
+            <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
+            <div class="other">
+                <div class="day">${window.moment(day.dt*1000).locale("vi").format('dddd')}</div>
+                <div class="temp">  ${day.weather[0].description}</div>
+                <div class="temp">Đêm : ${day.temp.night}&#176;C</div>
+                <div class="temp">Ngày : ${day.temp.day}&#176;C</div>      
+            </div>            
+            `
+        }else{
+            otherDayForcast += `
+            <div class="weather-forecast-item">
+                <div class="day">${window.moment(day.dt*1000).locale("vi").format('ddd')}</div>
+                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">  ${day.weather[0].description}</div>
+                <div class="temp">Đêm : ${day.temp.night}&#176;C</div>
+                <div class="temp">Ngày : ${day.temp.day}&#176;C</div>
+            </div>   
+             `
+        }
+    })
+    weatherForecastEl.innerHTML = otherDayForcast;
+}
+
+

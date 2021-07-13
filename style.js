@@ -1,15 +1,16 @@
+// navigaton bar
 var headers = document.getElementById('header');
 console.log(headers)
-var mobileBar = document.getElementById('mobile-bar');
+var mobileBar = document.querySelector('.mobile-bar');
 console.log(mobileBar)
 var overView = document.getElementById('overview');
 console.log(overView)
-var flexMenu = document.getElementById('flex-menu');
+var flexMenu = document.querySelector('.flex4-menu');
 
 mobileBar.onclick = function(){
     var isClose = headers.clientHeight === 60;
     if (isClose){
-        headers.style.height = '200px';
+        headers.style.height = '250px';
         flexMenu.style.opacity = '1';
     }else{
         headers.style.height = '60px';
@@ -19,3 +20,42 @@ mobileBar.onclick = function(){
 overView.onclick = function(){
     headers.style.height = '60px';
 }
+//map weather
+var slideIndex = 1;
+ showSlides(slideIndex);
+function plusSlides(n) {
+   showSlides(slideIndex += n);
+ }
+function currentSlide(n) {
+   showSlides(slideIndex = n);
+ }
+function showSlides(n) {
+   var i;
+   var slides = document.getElementsByClassName("mySlides");
+   var dots = document.getElementsByClassName("dot");
+   if (n > slides.length) {slideIndex = 1}
+   if (n < 1) {slideIndex = slides.length}
+   for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+   }
+   for (i = 0; i < dots.length; i++) {
+       dots[i].className = dots[i].className.replace(" active", "");
+   }
+   slides[slideIndex-1].style.display = "block";
+   dots[slideIndex-1].className += " active";
+ }
+
+ // api
+//  fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions", {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-key": "5b088930d4msh434c8fb98e985ddp18645ajsnf5e13d2e9f6b",
+// 		"x-rapidapi-host": "wft-geo-db.p.rapidapi.com"
+// 	}
+// })
+// .then(response => {
+// 	console.log(response);
+// })
+// .catch(err => {
+// 	console.error(err);
+// });
